@@ -451,8 +451,9 @@ plain $(eval_gettext '  1: Show diffs with gvim in expert mode')
 plain $(eval_gettext '  2: Show diffs with vimdiff (in console)')
 plain $(eval_gettext '  3: Show diffs with kompare')
 plain $(eval_gettext '  4: Show diffs with kdiff3')
-plain $(eval_gettext '  5: gvim in EASY mode')
-plain $(eval_gettext '  6: Enter a command to edit')
+plain $(eval_gettext '  5: Show diffs with meld')
+plain $(eval_gettext '  6: gvim in EASY mode')
+plain $(eval_gettext '  7: Enter a command to edit')
 plain $(eval_gettext '  S: suppress .$extension file')
 plain $(eval_gettext '  R: replace actual file by .$extension')
 if [ -f "$tmp_files/mergeable_files" ]; then
@@ -504,14 +505,20 @@ case "$action" in
 
 	DIFFEDITOR
 	;;
-	
+
 	"5" )
+	# Voir les différences avec GVIM
+	meld ${file[numero]} ${file[numero]}.$extension
+	DIFFEDITOR
+	;;
+	
+	"6" )
 	# Voir les différences avec GVIM
 	gvim -dy ${file[numero]} ${file[numero]}.$extension
 	DIFFEDITOR
 	;;
 	
-	"6" )
+	"7" )
 	# Voir les différences avec une commande donnée
 	echo
 	echo
